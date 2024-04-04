@@ -78,6 +78,76 @@ public class App_Finca {
         }
     }
 
+    public static void fnt_consultar_agricultores(String idBusqueda) {
+        boolean sw = false;
+        int pos = 0; // Inicializamos pos a -1, que indica que no se ha encontrado el agricultor
+    
+        for (int i = 0; i < Agricultor.size(); i++) {
+            if (Agricultor.get(i).getId().equals(idBusqueda)) {
+                sw = true; // Se encontró el agricultor
+                pos = i; // Guardamos la posición en la que se encontró
+                break; // Salimos del ciclo una vez que se encuentra el agricultor
+            }
+        }
+    
+        if (sw) {
+            cls_agricultor agricultorEncontrado = Agricultor.get(pos);
+            JOptionPane.showMessageDialog(null, "Agricultor encontrado:\n" +
+                    "ID: " + agricultorEncontrado.getId() + "\n" +
+                    "Nombre: " + agricultorEncontrado.getNombre() + "\n" +
+                    "Contacto: " + agricultorEncontrado.getContacto() + "\n" +
+                    "Ubicación: " + agricultorEncontrado.getUbicacion(), "Consulta de Agricultor", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún agricultor con el ID proporcionado.", "Consulta de Agricultor", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public static void fnt_consultar_cultivos(String codigoBusqueda) {
+        boolean sw = false;
+        int pos = 0; // Inicializamos pos a -1, que indica que no se ha encontrado el cultivo
+    
+        for (int i = 0; i < Cultivo.size(); i++) {
+            if (Cultivo.get(i).getCodigo().equals(codigoBusqueda)) {
+                sw = true; // Se encontró el cultivo
+                pos = i; // Guardamos la posición en la que se encontró
+                break; // Salimos del ciclo una vez que se encuentra el cultivo
+            }
+        }
+    
+        if (sw) {
+            cls_cultivos cultivoEncontrado = Cultivo.get(pos);
+            JOptionPane.showMessageDialog(null, "Cultivo encontrado:\n" +
+                    "Código: " + cultivoEncontrado.getCodigo() + "\n" +
+                    "Nombre: " + cultivoEncontrado.getNombre() + "\n" +
+                    "Área: " + cultivoEncontrado.getArea(), "Consulta de Cultivo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún cultivo con el código proporcionado.", "Consulta de Cultivo", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public static void fnt_consultar_labores(String codigoBusqueda) {
+        boolean sw = false;
+        int pos = 0; // Inicializamos pos a -1, que indica que no se ha encontrado la labor
+    
+        for (int i = 0; i < Labores.size(); i++) {
+            if (Labores.get(i).getCodigo().equals(codigoBusqueda)) {
+                sw = true; // Se encontró la labor
+                pos = i; // Guardamos la posición en la que se encontró
+                break; // Salimos del ciclo una vez que se encuentra la labor
+            }
+        }
+    
+        if (sw) {
+            cls_labores laborEncontrada = Labores.get(pos);
+            JOptionPane.showMessageDialog(null, "Labor encontrada:\n" +
+                    "Código: " + laborEncontrada.getCodigo() + "\n" +
+                    "Nombre: " + laborEncontrada.getNombre() + "\n" +
+                    "Tiempo: " + laborEncontrada.getTiempo(), "Consulta de Labor", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ninguna labor con el código proporcionado.", "Consulta de Labor", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
     public static void fnt_menu(boolean m){
 
         while (m == true){
@@ -88,11 +158,25 @@ public class App_Finca {
                 fnt_sub_menu(true);
                 }
                 if (op1 == 2){
-                    JOptionPane.showMessageDialog(null, "Aun esta en proceso, por favor esperar un poco más de tiempo");
+                    int tipoConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "¿Qué deseas consultar?\n1. Agricultores\n2. Cultivos\n3. Labores", "Consulta", JOptionPane.QUESTION_MESSAGE));
+                    switch (tipoConsulta) {
+                        case 1:
+                            fnt_consultar_agricultores();
+                            break;
+                        case 2:
+                            fnt_consultar_cultivos();
+                            break;
+                        case 3:
+                            fnt_consultar_labores();
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Opción inválida.", "Consultar", JOptionPane.WARNING_MESSAGE);
+                    
                     }
             if (op1 == 3){
                     m = false;
                     }
             }
         }
+    }
 }
