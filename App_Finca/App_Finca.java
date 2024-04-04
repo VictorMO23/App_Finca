@@ -157,26 +157,29 @@ public class App_Finca {
             if (op1 == 1){
                 fnt_sub_menu(true);
                 }
-                if (op1 == 2){
-                    int tipoConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "¿Qué deseas consultar?\n1. Agricultores\n2. Cultivos\n3. Labores", "Consulta", JOptionPane.QUESTION_MESSAGE));
-                    switch (tipoConsulta) {
-                        case 1:
-                            fnt_consultar_agricultores();
-                            break;
-                        case 2:
-                            fnt_consultar_cultivos();
-                            break;
-                        case 3:
-                            fnt_consultar_labores();
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Opción inválida.", "Consultar", JOptionPane.WARNING_MESSAGE);
-                    
-                    }
-            if (op1 == 3){
-                    m = false;
-                    }
+
+            if (op1 == 2){
+                int tipoConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "¿Qué deseas consultar?\n1. Agricultores\n2. Cultivos\n3. Labores", "Consulta", JOptionPane.QUESTION_MESSAGE));
+                switch (tipoConsulta) {
+                    case 1:
+                        String ID_agricultor = JOptionPane.showInputDialog(null, "Ingrese el ID del agricultor a buscar: ");
+                        fnt_consultar_agricultores(ID_agricultor);
+                        break;
+                    case 2:
+                        String cod_cultivo = JOptionPane.showInputDialog(null, "Ingrese el Código del cultivo a buscar: ");
+                        fnt_consultar_cultivos(cod_cultivo);
+                        break;
+                    case 3:
+                        String cod_labores = JOptionPane.showInputDialog(null, "Ingrese el Código de la labor a buscar: ");
+                        fnt_consultar_labores(cod_labores);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opción inválida.", "Consultar", JOptionPane.WARNING_MESSAGE);
+                }
             }
+            if (op1 == 3){
+                m = false;
+                }
         }
     }
 }
